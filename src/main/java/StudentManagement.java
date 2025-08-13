@@ -1,11 +1,10 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
-import java.util.SortedMap;
 
 public class StudentManagement {
+
     public static void main(String[] args) {
         Student[] students = new Student[100];
-        byte count = 0;
+        int count = 0;
         Scanner scanner = new Scanner(System.in);
         String choice;
 
@@ -14,9 +13,9 @@ public class StudentManagement {
         final String EXIT = "3";
 
         do {
-            System.out.println("1.Add student: ");
-            System.out.println("2.Show all students: ");
-            System.out.println("3.Exit ");
+            System.out.println("1. Add student");
+            System.out.println("2. Show all students");
+            System.out.println("3. Exit");
 
             System.out.println("Enter your choice: ");
             choice = scanner.nextLine();
@@ -29,9 +28,33 @@ public class StudentManagement {
                     }
                     Student student = new Student();
 
-                    System.out.println("Enter student name");
-                    System.out.println("Enter mark 1: ");
-                    System.out.println("Enter mark 1: ");
-                    System.out.println("Enter mark 1: ");
+                    System.out.println("Enter student name: ");
+                    student.name = scanner.nextLine();
 
+                    System.out.println("Enter mark 1: ");
+                    student.mark1 = Float.parseFloat(scanner.nextLine());
+
+                    System.out.println("Enter mark 2: ");
+                    student.mark2 = Float.parseFloat(scanner.nextLine());
+
+                    System.out.println("Enter mark 3: ");
+                    student.mark3 = Float.parseFloat(scanner.nextLine());
+
+                    students[count++] = student;
+                    break;
+                case SHOW:
+                    System.out.println("List of student");
+                    for (int i = 0; i <count; i++) {
+                    System.out.println("Student " + (i + 1) + ":");
+                    System.out.println("Name: " + students[i].name);
+                    System.out.println("Mark1: " + students[i].mark1);
+                    System.out.println("Mark2: " + students[i].mark2);
+                    System.out.println("Mark3: " + students[i].mark3);
+                    System.out.println("Total: " + students[i].total());
+                    System.out.println("Average: " + students[i].average());
+                }
+                break;
             }
+        } while (!choice.equals(EXIT));
+    }
+}
